@@ -1,14 +1,10 @@
 class Api::V1::ShopsController < Api::V1::BaseController
 
   def index
-    @shops = Shop.all
-
-    render json: @shops.as_json
+    respond_with ActiveModel::Serializer::CollectionSerializer.new(Shop.all)
   end
 
   def show
-    @shop = Shop.find(params[:id])
-
-    render json: @shop.as_json(methods: [:products])
+    respond_with Shop.find(params[:id])
   end
 end
