@@ -8,4 +8,8 @@ class Api::V1::BaseController < ApplicationController
   def not_found
     return render(json: { errors: 'Not found' }, status: 404)
   end
+
+  def current_user
+    User.find_by(token: request.headers['token'])
+  end
 end

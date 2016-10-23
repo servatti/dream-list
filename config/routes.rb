@@ -7,8 +7,12 @@ Rails.application.routes.draw do
       resources :shops, only: [:index, :show] do
         resources :products, only: [:index, :show], module: :shops
       end
-      resources :products, only: [:index]
+      resources :products, only: [:index] do
+        resources :wishes, only: [:create], module: :products
+        delete '/wishes', to: 'products/wishes#destroy'
+      end
       resources :users, only: [:show]
+      resources :wishlist, only: [:index]
       post '/login', to: 'users#create'
     end
   end
