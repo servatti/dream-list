@@ -8,6 +8,8 @@ Rails.application.routes.draw do
         resources :products, only: [:index, :show], module: :shops
       end
       resources :products, only: [:index]
+      resources :users, only: [:show]
+      post '/login', to: 'users#create'
     end
   end
 end
