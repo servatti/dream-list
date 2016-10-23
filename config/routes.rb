@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         delete '/wishes', to: 'products/wishes#destroy'
       end
       resources :users, only: [:show]
-      resources :wishlist, only: [:index]
+      get 'wishlist', to: 'wishlists#index'
       post '/login', to: 'users#create'
     end
   end
